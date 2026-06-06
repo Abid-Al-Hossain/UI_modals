@@ -9,5 +9,6 @@ type Props = { state: ModalState; update: <K extends keyof ModalState>(key: K, v
 export default function BehaviorSection({ state, update }: Props) {
   return <SectionCard title="Behavior" subtitle="Behavior controls for native modal generation."><Switch label="Close on Escape" checked={state.closeOnEscape} onChange={(value) => update("closeOnEscape", value)} />
 <Switch label="Close outside" checked={state.closeOnOutside} onChange={(value) => update("closeOnOutside", value)} />
+<Switch label="Default open" checked={state.defaultOpen ?? state.previewState === "open"} onChange={(value) => update("defaultOpen", value)} />
 <Switch label="Disabled" checked={state.disabled} onChange={(value) => update("disabled", value)} /></SectionCard>;
 }

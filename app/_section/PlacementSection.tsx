@@ -1,10 +1,15 @@
 "use client";
 
 import { SectionCard } from "@/components/shared/layout/SectionCard";
+import Select from "@/components/shared/input/Select";
 import type { ModalState } from "../types";
 
 type Props = { state: ModalState; update: <K extends keyof ModalState>(key: K, value: ModalState[K]) => void };
 
 export default function PlacementSection({ state, update }: Props) {
-  return <SectionCard title="Placement" subtitle="Placement controls for native modal generation."><div className="rounded-2xl border p-4 text-sm" style={{ borderColor: "var(--border)", color: "var(--muted)" }}>No separate native controls are needed for this section in this component.</div></SectionCard>;
+  return <SectionCard title="Placement" subtitle="Placement controls for native modal generation."><Select label="Panel placement" value={state.placement ?? "center"} options={[
+  "center",
+  "top",
+  "bottom"
+]} onChange={(value) => update("placement", value)} /></SectionCard>;
 }

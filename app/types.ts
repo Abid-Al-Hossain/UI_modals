@@ -5,6 +5,7 @@ export type ModalState = {
   description: string;
   label: string;
   helper: string;
+  triggerLabel?: string;
   id: string;
   ariaLabel: string;
   tabIndex: number;
@@ -27,7 +28,9 @@ export type ModalState = {
   previewState: "default" | "hover" | "focus" | "active" | "open" | "closed" | "selected" | "loading" | "empty" | "error" | "success";
   motion: boolean;
   disabled: boolean;
-  role: "region" | "group" | "status" | "alert" | "dialog" | "menu" | "menubar" | "navigation" | "list" | "tree" | "table" | "tablist" | "form" | "textbox" | "img" | "application";
+  role: "dialog";
+  placement?: "center" | "top" | "bottom";
+  defaultOpen?: boolean;
   modal: boolean;
   showOverlay: boolean;
   closeOnEscape: boolean;
