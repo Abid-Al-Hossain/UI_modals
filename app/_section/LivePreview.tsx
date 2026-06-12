@@ -23,6 +23,8 @@ function panelStyle(state: ModalState): CSSProperties {
     color: state.foreground,
     fontFamily: state.fontFamily,
     opacity: state.disabled ? 0.55 : 1,
+    transition: state.motion ? "opacity 0.2s ease, transform 0.2s ease" : "none",
+    transform: state.motion ? "scale(1)" : undefined,
   };
 }
 
@@ -65,6 +67,7 @@ export default function LivePreview({ state }: { state: ModalState }) {
           style={{
             placeItems: placement === "center" ? "center" : placement === "top" ? "start center" : "end center",
             background: state.showOverlay ? "rgba(15, 23, 42, .58)" : "transparent",
+            transition: state.motion ? "background 0.2s ease" : "none",
           }}
         >
           <section role="dialog" aria-modal={state.modal} aria-label={state.ariaLabel} aria-labelledby={titleId} aria-describedby={descriptionId} tabIndex={state.tabIndex} style={panelStyle(state)}>
