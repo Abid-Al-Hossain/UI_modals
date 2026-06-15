@@ -1,14 +1,29 @@
 "use client";
 
 import { SectionCard } from "@/components/shared/layout/SectionCard";
+import Select from "@/components/shared/input/Select";
 import Switch from "@/components/shared/input/Switch";
 import type { ModalState } from "../types";
 
 type Props = { state: ModalState; update: <K extends keyof ModalState>(key: K, value: ModalState[K]) => void };
 
 export default function BehaviorSection({ state, update }: Props) {
-  return <SectionCard title="Behavior" subtitle="Behavior controls for native modal generation."><Switch label="Close on Escape" checked={state.closeOnEscape} onChange={(value) => update("closeOnEscape", value)} />
-<Switch label="Close outside" checked={state.closeOnOutside} onChange={(value) => update("closeOnOutside", value)} />
-<Switch label="Default open" checked={state.defaultOpen ?? state.previewState === "open"} onChange={(value) => update("defaultOpen", value)} />
-<Switch label="Disabled" checked={state.disabled} onChange={(value) => update("disabled", value)} /></SectionCard>;
+  return (
+    <div className="space-y-4">
+      <SectionCard title="Dismiss" subtitle="How the modal closes.">
+        <Switch label="Close on Escape" checked={state.closeOnEscape} onChange={(value) => update("closeOnEscape", value)} />
+        <Switch label="Close on outside click" checked={state.closeOnOutside} onChange={(value) => update("closeOnOutside", value)} />
+      </SectionCard>
+      <SectionCard title="Overlay & Scroll" subtitle="Overlay and scrollable content options.">
+        <Switch label="Show overlay" checked={state.showOverlay} onChange={(value) => update("showOverlay", value)} />
+        <Switch label="Modal (aria-modal)" checked={state.modal} onChange={(value) => update("modal", value)} />
+        <Switch label="Scrollable content" checked={state.scrollable} onChange={(value) => update("scrollable", value)} />
+      </SectionCard>
+      <SectionCard title="Actions" subtitle="Action button layout and open state.">
+        <Select label="Action layout" value={state.actionLayout} options={["row", "column"]} onChange={(value) => update("actionLayout", value)} />
+        <Switch label="Default open" checked={state.defaultOpen ?? state.previewState === "open"} onChange={(value) => update("defaultOpen", value)} />
+        <Switch label="Disabled" checked={state.disabled} onChange={(value) => update("disabled", value)} />
+      </SectionCard>
+    </div>
+  );
 }
