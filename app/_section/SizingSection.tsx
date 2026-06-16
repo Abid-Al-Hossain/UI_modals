@@ -11,12 +11,15 @@ export default function SizingSection({ state, update }: Props) {
   return (
     <div className="space-y-4">
       <SectionCard title="Sizing" subtitle="Sizing controls for native modal generation.">
+      <div className="space-y-4">
         <Slider label="Width" value={state.width} min={220} max={900} step={1} onChange={(value) => update("width", value)} />
         <Slider label="Height" value={state.height} min={120} max={720} step={1} onChange={(value) => update("height", value)} />
         <Slider label="Gap" value={state.gap} min={0} max={48} step={1} onChange={(value) => update("gap", value)} />
         <Slider label="Padding" value={state.padding} min={8} max={64} step={1} onChange={(value) => update("padding", value)} />
-      </SectionCard>
+      </div>
+    </SectionCard>
       <SectionCard title="Dialog size & motion" subtitle="Max-width variant, height cap, and entrance.">
+      <div className="space-y-4">
         <SegmentedControl
           label="Width variant"
           value={state.widthVariant}
@@ -32,7 +35,8 @@ export default function SizingSection({ state, update }: Props) {
           options={[{ label: "Fade", value: "fade" }, { label: "Scale", value: "scale" }, { label: "Slide up", value: "slide-up" }, { label: "Slide down", value: "slide-down" }]}
           onChange={(value) => update("animationType", value as ModalState["animationType"])}
         />
-      </SectionCard>
+      </div>
+    </SectionCard>
     </div>
   );
 }
